@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ tweet.text }}</h1>
+  <p>Posted by {{ tweet.author }} on {{ tweet.created_at }}</p>
+  <p>{{ tweet.likes.count }} Likes</p>
+  <p>{{ tweet.replies.count }} Replies</p>
+
+  {% if tweet.image %}
+    <img src="{{ tweet.image.url }}" alt="{{ tweet.text }}">
+  {% endif %}
+
+  <a href="{% url 'edit_tweet' tweet.id %}">Edit</a>
+{% endblock %}

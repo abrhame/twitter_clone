@@ -1,0 +1,8 @@
+{% extends 'twitterclone/base.html' %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+<h1>{{ user.username }}</h1>
+<p>{{ user.bio }}</p>
+{% endblock %}

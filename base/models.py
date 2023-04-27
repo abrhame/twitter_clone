@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -27,6 +28,17 @@ class DirectMessage(models.Model):
     message = models.CharField(max_length=280)
     date_sent = models.DateTimeField(auto_now_add=True)
 
+class Reply(models.Model):
+    tweet = models.ForeignKey('Tweet', on_delete=models.CASCADE, related_name='replies')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username}'s reply to {self.tweet.user.username}"
+
+    def get_absolute_url(self):
+        return reverse('tweet_detail', args=[str(self.tweet.id)])
 class Notification(models.Model):
     recipient = models.ForeignKey(User, related_name='notifications', on_delete=models.CASCADE)
     notification_type = models.CharField(max_length=50)

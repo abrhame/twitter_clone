@@ -23,4 +23,3 @@
 ##### Sign up page
 ![settings page](screens/signup.png)<br><br>
  
->>>>>>> master

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head_title %}User{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+{% block content %}
+    {% include 'feed/menu.html' %}
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'feed/left_site.html' %}
+            <div class="col-7 right-container">
+                <h3>Tweets</h3>
+                {% for tweet in tweets %}
+                    <a href="{% url 'user_view' tweet.author.username %}">
+                        <div class="tweet">
+                            <div class="title"><img src="{% get_media_prefix %}{{ tweet.author.profile.avatar }}"
+                                                    class="small-avatar">
+                                <span>{{ tweet.author.username }}</span>
+                            </div>
+                    </a>
+                    <a href="{{ tweet.url }}">
+                        <div class="content">
+                            <span>{{ tweet.content }} </span>
+                        </div>
+                        <div class="footer">
+                            <span>{{ tweet.number_of_comments }} comments(s)</span>
+                            <span style="float:right">{{ tweet.add_date }}</span>
+                        </div>
+                    </div>
+                    </a>
+                {% endfor %}
+            <div class="pagination">
+    <span class="step-links">
+        {% if tweets.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ tweets.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ tweets.number }} of {{ tweets.paginator.num_pages }}.
+        </span>
+
+        {% if tweets.has_next %}
+            <a href="?page={{ tweets.next_page_number }}">next</a>
+            <a href="?page={{ tweets.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

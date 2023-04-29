@@ -3,7 +3,7 @@
 =======
 # Twitter clone
 
-### Fully functional Django website that works exactly like real Twitter<br>
+### Advanced Programming Python web framework (Django) Project<br>
 
 ##### Home page
 ![home page](screens/home.png) <br><br>
@@ -23,12 +23,4 @@
 ##### Sign up page
 ![settings page](screens/signup.png)<br><br>
  
-### TODO
-- [ ] Add mobile friendly template
-- [ ] Like functionality
-- [ ] 'Update and delete tweets by user' functionality
-
-
-
-
 >>>>>>> master
